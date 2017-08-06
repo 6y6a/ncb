@@ -15,10 +15,29 @@
     padding: 10px 15px;
     color: #ccc;
     text-decoration: none;
+    border-bottom: 2px solid transparent;
 
     &--active {
       color: #000;
       border-bottom: 2px solid $primary-color;
+      transition: 0.3s;
     }
+  }
+
+  &__content {
+    margin-top: 10px;
+  }
+
+  &__text {
+    height: 0;
+    opacity: 0;
+
+    &--active {
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1.5s;
+    }
+
   }
 }
