@@ -31,6 +31,7 @@
   &__text {
     height: 0;
     opacity: 0;
+    visibility: hidden;
 
     &--active {
       height: auto;

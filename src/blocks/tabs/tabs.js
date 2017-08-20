@@ -86,8 +86,9 @@
 
 
 $(document).ready(function () {
-  $("#tabs").Tabs({
+  $(".tabs").Tabs({
     activeTab: 3
   });
+
 });
 
