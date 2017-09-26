@@ -2,29 +2,27 @@
 
 
 .breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
   padding: 10px 16px;
   list-style: none;
-  //background-color: #eee;
 
   &__item {
-    display: inline;
-    font-size: 18px;
+    font-size: 14px;
 
     & + &:before {
       padding: 8px;
-      color: black;
-      content: "/\00a0";
+      content: "/";
     }
   }
 
   &__link {
-    color: #0275d8;
+    color: $link-color;
     text-decoration: none;
 
     &:hover {
-      color: #01447e;
+      color: $link-hover-color;
       text-decoration: underline;
     }
-
   }
 }
