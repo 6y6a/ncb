@@ -23,6 +23,7 @@ var size           = require('gulp-size');
 var cssfont64      = require('gulp-cssfont64');
 var gulpSequence   = require('gulp-sequence');
 var ghPages        = require('gulp-gh-pages');
+var merge          = require('merge-stream');
 
 
 // Запуск `NODE_ENV=production npm start [задача]` приведет к сборке без sourcemaps
@@ -167,7 +168,7 @@ gulp.task('font:woff', function () {
     .pipe(cssfont64())
     .pipe(rename({
       suffix: ".woff"}))
-    .pipe(gulp.dest('./build/css/'))
+    .pipe(gulp.dest('./src/font/'))
     .pipe(browserSync.stream());
 });
 
@@ -177,6 +178,13 @@ gulp.task('font:woff2', function () {
     .pipe(cssfont64())
     .pipe(rename({
       suffix: ".woff2"}))
+    .pipe(gulp.dest('./src/font/'))
+    .pipe(browserSync.stream());
+});
+
+// Сборка шрифтов
+gulp.task('font', function () {
+  return gulp.src('./src/font/*.css')
     .pipe(gulp.dest('./build/css/'))
     .pipe(browserSync.stream());
 });
@@ -199,7 +207,7 @@ gulp.task('clean', function () {
 
 
 // Сборка всего
-gulp.task('build', gulpSequence('clean', ['make:scss', 'copy:css', 'img', 'js', 'html', 'font:woff', 'font:woff2']));
+gulp.task('build', gulpSequence('clean', ['make:scss', 'copy:css', 'img', 'js', 'html', 'font']));
 
 
 // Локальный сервер, слежение
@@ -218,7 +226,7 @@ gulp.task('server', ['build'], function() {
       });
 
     gulp.watch('./src/fonts/**/*', function (event) {
-      gulpSequence(['font:woff', 'font:woff2'], browserSync.reload)(function (err) {
+      gulpSequence(['font:woff'], browserSync.reload)(function (err) {
         if (err) console.log(err)
       })
     });

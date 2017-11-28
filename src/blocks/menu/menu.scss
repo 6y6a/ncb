@@ -1,0 +1,36 @@
+@import '../../scss/basic/variables';
+
+.header {
+  background: #9E9E9E;
+
+  &__logo {
+    padding: 5px;
+    color: #fff;
+    font: 26px sans-serif;
+    text-align: center;
+  }
+}
+
+.menu {
+
+  &__burger {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    margin: 8px 10px;
+    padding: 0;
+    list-style: none;
+  }
+  
+  &__burger-line {
+    margin: 4px 0;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+  }
+  
+  &__list {
+    //display: none;
+  }
+
+}

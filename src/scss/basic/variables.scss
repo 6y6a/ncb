@@ -1,8 +1,26 @@
 /* COLORS
    ========================================================================== */
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$theme-colors:(
+        primary: $blue,
+        success: $green,
+        info: $cyan,
+        warning: $yellow,
+        danger: $red,
+);
 
 $primary-color: #2196F3;
-
+$menu-color: #424242;
 
 
 /* GRIDS
@@ -24,3 +42,10 @@ $container-max-widths: (
 
 $grid-columns: 12;
 $grid-gutter-width: 30px;
+
+
+/* LINKS
+   ========================================================================== */
+
+$link-color:            map_get($theme-colors, 'primary') !default;
+$link-hover-color:      darken($link-color, 15%) !default;
