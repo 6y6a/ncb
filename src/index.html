@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello world</title>
+    <title>Национальный центр банкротства</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
     <!--Загрузка шрифта-->
@@ -12,7 +12,7 @@
             // 0. Многие неподдерживаемые браузеры должны останавливать работу тут.
             var nua = navigator.userAgent;
             var noSupport = !window.addEventListener // IE8 и ниже
-                    || (nua.match(/(Android (2|3|4.0|4.1|4.2|4.3))|(Opera (Mini|Mobi))/) && !nua.match(/Chrome/)) // Android Stock Browser до 4.4 и Opera Mini
+                || (nua.match(/(Android (2|3|4.0|4.1|4.2|4.3))|(Opera (Mini|Mobi))/) && !nua.match(/Chrome/)) // Android Stock Browser до 4.4 и Opera Mini
 
             if (noSupport) {
                 return;
@@ -25,7 +25,8 @@
                 // например, для случаев когда cookies отключены и браузер не даёт к ним доступа.
                 // Иначе могут быть получены исключения, которые полностью остановят загрузку шрифтов.
                 loSto = localStorage || {};
-            } catch(ex) {}
+            } catch (ex) {
+            }
 
             var localStoragePrefix = 'x-font-' + fontName;
             var localStorageUrlKey = localStoragePrefix + 'url';
@@ -52,13 +53,13 @@
 
                 // 5. Проверяем поддержку WOFF2 чтобы узнать, какой URL использовать.
                 var url = (woff2Url && supportsWoff2())
-                        ? woff2Url // WOFF2 URL передан в функцию и поддерживается.
-                        : woffUrl; // Поддерживается только WOFF.
+                    ? woff2Url // WOFF2 URL передан в функцию и поддерживается.
+                    : woffUrl; // Поддерживается только WOFF.
 
                 // 6. Получаем данные с сервера.
                 var request = new XMLHttpRequest();
                 request.open('GET', url);
-                request.onload = function() {
+                request.onload = function () {
                     if (request.status >= 200 && request.status < 400) {
                         // 7. Обновляем localStorage новыми данными и применяем стили шрифта.
                         loSto[localStorageUrlKey] = url;
@@ -108,18 +109,58 @@
                                 <input type="text" class="offer__phone" placeholder="Телефон">
                             </div>
                             <div class="offer__col-3">
-                                <input type="submit" class="btn  btn--accent  offer__submit" value="Получить консультацию">
+                                <input type="submit" class="btn  btn--accent  offer__submit"
+                                       value="Получить консультацию">
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="steps">
+        <div class="steps__container">
+            <h3 class="steps__header">Осуществите банкротство за 3 шага</h3>
+            <h4 class="steps__subheader">Оплата только после признания Вас <em
+                    class="steps__subheader--em">банкротом!</em></h4>
 
+            <div class="steps__row">
+                <div class="steps__col-1">
+                    <div class="steps__icon">
+                        <div class="steps__position">1</div>
+                        <div class="sprite-png--telemarketer"></div>
+                    </div>
+                    <p class="steps__trigger">Вы оставляете заявку на нашем сайте</p>
+                    <p class="steps__text">или звоните по номеру
+                        <em class="steps__text--em">8 (800) 220-30-99</em> <br>
+                         и наш юрист связывается с&nbspВами в течении 5 минут
+                    </p>
+                </div>
+                <div class="steps__col-1">
+                    <div class="steps__icon">
+                        <div class="steps__position">2</div>
+                        <div class="sprite-png--strategy"></div>
+                    </div>
+                    <p class="steps__trigger">Мы разрабатываем стратегию банкротства</p>
+                    <p class="steps__text">в соответствии с конкретно Вашей ситуацией и ведем процедуру банкротства
+                        <br><em class="steps__text--em">от А до Я</em>
+                    </p>
+                    </p>
+                </div>
+                <div class="steps__col-1">
+                    <div class="steps__icon">
+                        <div class="steps__position">3</div>
+                        <div class="sprite-png--signing-the-contract"></div>
+                    </div>
+                    <p class="steps__trigger">Вы получаете решение суда о банкротстве</p>
+                    <p class="steps__text">в котором полностью освободжаетесь от всех долгов и начинаете
+                        <br><em class="steps__text--em">новую жизнь</em>
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
-
-
 
 
 <script src="js/script.min.js"></script>
