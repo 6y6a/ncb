@@ -18,7 +18,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 */
 .sprite-png--correct-symbol {
   background-image: url(../img/sprite-png.png);
-  background-position: -69px -384px;
+  background-position: -384px -315px;
   width: 64px;
   height: 64px;
 }
@@ -30,31 +30,43 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .sprite-png--home-interface {
   background-image: url(../img/sprite-png.png);
-  background-position: -138px -384px;
+  background-position: -276px -384px;
   width: 64px;
   height: 64px;
 }
 .sprite-png--house-key {
   background-image: url(../img/sprite-png.png);
-  background-position: -384px -315px;
+  background-position: -69px -384px;
   width: 64px;
   height: 64px;
 }
 .sprite-png--inspection {
   background-image: url(../img/sprite-png.png);
-  background-position: -276px -384px;
+  background-position: -345px -384px;
   width: 64px;
   height: 64px;
+}
+.sprite-png--left {
+  background-image: url(../img/sprite-png.png);
+  background-position: -489px 0px;
+  width: 39px;
+  height: 108px;
 }
 .sprite-png--payment-method {
   background-image: url(../img/sprite-png.png);
-  background-position: 0px -384px;
+  background-position: -414px -384px;
   width: 64px;
   height: 64px;
 }
+.sprite-png--right {
+  background-image: url(../img/sprite-png.png);
+  background-position: -489px -113px;
+  width: 38px;
+  height: 99px;
+}
 .sprite-png--shopping-support {
   background-image: url(../img/sprite-png.png);
-  background-position: -414px -384px;
+  background-position: -138px -384px;
   width: 64px;
   height: 64px;
 }
@@ -84,7 +96,7 @@ To change `display` (e.g. `display: inline-block;`), we suggest using a common C
 }
 .sprite-png--violent-criminal {
   background-image: url(../img/sprite-png.png);
-  background-position: -345px -384px;
+  background-position: 0px -384px;
   width: 64px;
   height: 64px;
 }
