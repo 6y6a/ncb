@@ -1,0 +1,47 @@
+@import '../../scss/basic/variables';
+
+.question {
+  //padding: 30px 0;
+  background: $primary-color;
+  background: linear-gradient(45deg, rgba($primary-color, 0.9), rgba(lighten($primary-color, 10%), 0.9)),
+  url(../img/question-bg-small.jpg) center center no-repeat;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+
+  @include media-breakpoint-up(md) {
+    background-image: url(../img/question-bg.jpg);
+    background-position: center center;
+  }
+
+  @include media-breakpoint-up(sm) {
+    padding: 5px 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 15px 0;
+  }
+
+  &__container {
+    @include make-container();
+    @include make-container-width();
+  }
+
+  &__row {
+    @include make-row();
+  }
+
+  &__col-1 {
+    @include make-col-ready();
+
+    @include media-breakpoint-up(sm) {
+      @include make-col(10);
+      @include make-col-offset(1);
+    }
+  }
+
+  &__form {
+    border: none;
+    box-shadow: none;
+  }
+}
