@@ -89,6 +89,37 @@
 </head>
 <body>
 
+<header class="header">
+    <div class="header__container">
+        <div class="header__row">
+            <div class="header__col-1">
+                <div class="header__logo">
+                    <img src="img/logo.jpg" alt="" class="header__img">
+                </div>
+            </div>
+            <div class="header__col-2">
+                <div class="header__descriptor">Юридические услуги по банкроству физических лиц</div>
+                <nav class="header__menu">
+                    <div class="header__burger">
+                        <div class="header__line"></div>
+                        <div class="header__line"></div>
+                        <div class="header__line"></div>
+                    </div>
+                    <ul class="header__list">
+                        <li class="header__item"><a href="#steps" class="header__link">Как получить?</a></li>
+                        <li class="header__item"><a href="#calc" class="header__link">Калькулятор</a></li>
+                        <li class="header__item"><a href="#about" class="header__link">О компании</a></li>
+                        <li class="header__item"><a href="#examples" class="header__link">Истории успеха</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header__col-3">
+                <div class="header__phone">8 (800) 222-30-99</div>
+                <a href="#" class="btn  btn--small">Заказать звонок</a>
+            </div>
+        </div>
+    </div>
+</header>
 
 <main>
     <div class="hero">
@@ -118,7 +149,7 @@
             </div>
         </div>
     </div>
-    <div class="steps">
+    <div class="steps" id="steps">
         <div class="steps__container">
             <h3 class="steps__header">Осуществите банкротство за 3 шага</h3>
             <h4 class="steps__subheader">Оплата только после признания Вас <em
@@ -160,7 +191,8 @@
             </div>
         </div>
     </div>
-    <div class="about">
+    <div class="calc" id="calc"></div>
+    <div class="about" id="about">
         <div class="about__container">
             <div class="about__row">
                 <div class="about__col-1">
@@ -296,7 +328,7 @@
             </div>
         </div>
     </div>
-    <div class="examples">
+    <div class="examples" id="examples">
         <div class="examples__container">
             <div class="examples__row">
                 <div class="examples__col-1">

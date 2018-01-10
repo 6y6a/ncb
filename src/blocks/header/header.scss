@@ -1,0 +1,182 @@
+@import '../../scss/basic/variables';
+
+.header {
+  position: relative;
+  background: #fff;
+  color: $dark-color;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+  @include media-breakpoint-up(lg) {
+    padding: 10px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding: 10px 0 15px;
+  }
+
+  &__container {
+    @include make-container();
+    @include make-container-width();
+  }
+
+  &__row {
+    @include make-row();
+  }
+
+  &__col-1 {
+    @include make-col-ready();
+    @include make-col(8);
+
+    @include media-breakpoint-up(md) {
+      @include make-col(3);
+    }
+  }
+
+  &__col-2 {
+    @include make-col-ready();
+    position: static;
+
+    @include media-breakpoint-up(md) {
+      @include make-col(9);
+    }
+
+    @include media-breakpoint-up(lg) {
+      @include make-col(7);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include make-col(6);
+    }
+  }
+
+  &__col-3 {
+    @include make-col-ready();
+    display: none;
+
+    @include media-breakpoint-up(lg) {
+      display: block;
+      @include make-col(2);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include make-col(3);
+    }
+  }
+
+  &__logo {
+    padding: 0;
+  }
+
+  &__img {
+    max-width: 100%;
+  }
+
+  &__descriptor {
+    padding: 5px 0 0;
+    display: none;
+
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding: 15px 0 10px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      padding: 20px 0 15px;
+    }
+  }
+
+  &__burger {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transform: translate(0, -50%);
+
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+
+  &__line {
+    margin-bottom: 3px;
+    width: 20px;
+    height: 3px;
+    background: $primary-color;
+  }
+
+  &__list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    font: 16px sans-serif;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      position: relative;
+      left: -10px;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &--active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__item {
+    border-top: 1px solid lighten($primary-color, 60%);
+    text-align: center;
+
+   @include media-breakpoint-up(md) {
+      border-top: none;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    padding: 10px;
+    font-family: "Roboto", sans-serif;
+    color: $primary-color;
+    text-decoration: none;
+    border-radius: 5px;
+
+    @include media-breakpoint-up(md) {
+      &:hover {
+        background: lighten($primary-color, 60%);
+      }
+    }
+
+    @include media-breakpoint-up(xl) {
+      //font-size: 16px;
+    }
+  }
+
+  &__phone {
+    padding: 15px 0 10px;
+    font-size: 16px;
+    color: #000;
+    text-align: center;
+    white-space: nowrap;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 26px;
+      padding: 15px 0 10px;
+    }
+  }
+}
+
