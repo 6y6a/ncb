@@ -15,6 +15,7 @@ $(document).ready(function () {
         $im2 = $('#im2'),
         $im3 = $('#im3'),
         $result = $('#result'),
+        $monthRes = $('#monthRes'),
         $handMoney = $('#hand-money'),
         $handMonth = $('#hand-month'),
         $calc = $('#calc-callback'),
@@ -53,6 +54,7 @@ $(document).ready(function () {
 
         onSlide: function (pos, val) {
             $monthTotal.html(val);
+            $monthRes.text(val + " месяцев");
             result.month = val;
             $(document).trigger('calc');
         }

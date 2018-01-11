@@ -26,14 +26,16 @@
   }
 
   &--calc {
-    font-size: 14px;
+    font-size: 12px;
 
     @include media-breakpoint-up(sm) {
-      font-size: 26px;
+      font-size: 22px;
     }
+
 
     @include media-breakpoint-up(md) {
       padding: 10px;
+      font-size: 26px;
     }
   }
 
