@@ -25,9 +25,16 @@
     background:linear-gradient(25deg, darken($primary-color, 5%), lighten($primary-color, 5%));
   }
 
-  &--big {
-    padding: 15px;
-    font-size: 36px;
+  &--calc {
+    font-size: 14px;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 26px;
+    }
+
+    @include media-breakpoint-up(md) {
+      padding: 10px;
+    }
   }
 
   &--small {

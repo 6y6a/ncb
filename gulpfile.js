@@ -1,29 +1,29 @@
 'use strict';
 
-var gulp           = require('gulp');
-var gulpIf         = require('gulp-if');
-var debug          = require('gulp-debug');
-var del            = require('del');
-var pngquant       = require('imagemin-pngquant');
-var notify         = require('gulp-notify');
-var postcss        = require('gulp-postcss');
-var sass           = require('gulp-sass');
-var concat         = require('gulp-concat');
-var cleanCss       = require('gulp-clean-css');
-var imagemin       = require('gulp-imagemin');
-var uglify         = require('gulp-uglify');
-var spritesmith    = require('gulp.spritesmith');
-var sourcemap      = require('gulp-sourcemaps');
-var newer          = require('gulp-newer');
-var autoprefixer   = require('autoprefixer');
-var browserSync    = require('browser-sync');
-var fs             = require('fs');
-var rename         = require('gulp-rename');
-var size           = require('gulp-size');
-var cssfont64      = require('gulp-cssfont64');
-var gulpSequence   = require('gulp-sequence');
-var ghPages        = require('gulp-gh-pages');
-var merge          = require('merge-stream');
+var gulp = require('gulp');
+var gulpIf = require('gulp-if');
+var debug = require('gulp-debug');
+var del = require('del');
+var pngquant = require('imagemin-pngquant');
+var notify = require('gulp-notify');
+var postcss = require('gulp-postcss');
+var sass = require('gulp-sass');
+var concat = require('gulp-concat');
+var cleanCss = require('gulp-clean-css');
+var imagemin = require('gulp-imagemin');
+var uglify = require('gulp-uglify');
+var spritesmith = require('gulp.spritesmith');
+var sourcemap = require('gulp-sourcemaps');
+var newer = require('gulp-newer');
+var autoprefixer = require('autoprefixer');
+var browserSync = require('browser-sync');
+var fs = require('fs');
+var rename = require('gulp-rename');
+var size = require('gulp-size');
+var cssfont64 = require('gulp-cssfont64');
+var gulpSequence = require('gulp-sequence');
+var ghPages = require('gulp-gh-pages');
+var merge = require('merge-stream');
 
 
 // Запуск `NODE_ENV=production npm start [задача]` приведет к сборке без sourcemaps
@@ -37,41 +37,41 @@ var blocks = getComponentsFiles();
 gulp.task('make:scss', function () {
     console.log('---------- Компиляция SCSS');
     return gulp.src('./src/scss/main.scss')
-      .pipe(gulpIf(isDev, sourcemap.init()))
-      .pipe(debug({title: "SCSS:"}))
-      .pipe(sass())
-      .on('error', notify.onError(function(err){
-          return {
-              title: 'Ошибка при компиляции стилей',
-              message: err.message
-          }
-      }))
-      .pipe(postcss([
-          autoprefixer({browsers: ['last 2 version']})
-      ]))
-      .pipe(gulpIf(!isDev, cleanCss()))
-      .pipe(rename('style.min.css'))
-      .pipe(debug({title: "RENAME:"}))
-      .pipe(gulpIf(isDev, sourcemap.write()))
-      .pipe(size({
-          title: 'Размер',
-          showFiles: true,
-          showTotal: false
-      }))
-      .pipe(gulp.dest('./build/css'))
-      .pipe(browserSync.stream());
+        .pipe(gulpIf(isDev, sourcemap.init()))
+        .pipe(debug({title: "SCSS:"}))
+        .pipe(sass())
+        .on('error', notify.onError(function (err) {
+            return {
+                title: 'Ошибка при компиляции стилей',
+                message: err.message
+            }
+        }))
+        .pipe(postcss([
+            autoprefixer({browsers: ['last 2 version']})
+        ]))
+        .pipe(gulpIf(!isDev, cleanCss()))
+        .pipe(rename('style.min.css'))
+        .pipe(debug({title: "RENAME:"}))
+        .pipe(gulpIf(isDev, sourcemap.write()))
+        .pipe(size({
+            title: 'Размер',
+            showFiles: true,
+            showTotal: false
+        }))
+        .pipe(gulp.dest('./build/css'))
+        .pipe(browserSync.stream());
 });
 
 // Копирование добавочных CSS, которые хочется иметь отдельными файлами
-gulp.task('copy:css', function(callback) {
-    if(blocks.additionalCss.length > 0) {
+gulp.task('copy:css', function (callback) {
+    if (blocks.additionalCss.length > 0) {
         console.log('---------- Копирование CSS');
         return gulp.src(blocks.additionalCss)
-          .pipe(postcss([
-              autoprefixer({browsers: ['last 2 version']})
-          ]))
-          .pipe(cleanCss())
-          .pipe(gulp.dest('./build/css'));
+            .pipe(postcss([
+                autoprefixer({browsers: ['last 2 version']})
+            ]))
+            .pipe(cleanCss())
+            .pipe(gulp.dest('./build/css'));
     }
     else {
         console.log('---------- Копирование CSS: нет дополнительного CSS');
@@ -83,49 +83,52 @@ gulp.task('copy:css', function(callback) {
 gulp.task('img', function () {
     console.log('---------- Копирование и оптимизация картинок');
     return gulp.src(blocks.img)
-      .pipe(newer('./build/img'))  // оставить в потоке только изменившиеся файлы
-      .pipe(imagemin({
-          progressive: true,
-          svgoPlugins: [{removeViewBox: false}],
-          use: [pngquant()]
-      }))
-      .pipe(gulp.dest('./build/img'));
+        .pipe(newer('./build/img'))  // оставить в потоке только изменившиеся файлы
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest('./build/img'));
 });
 
 
 // Сборка PNG-спрайта для блока sprite-png
 gulp.task('png', function (callback) {
     var spritePath = './src/blocks/sprite-png/png/';
-    if(fileExist(spritePath) !== false) {
+    if (fileExist(spritePath) !== false) {
         console.log('---------- Сборка PNG спрайта');
         var sprite = gulp.src(spritePath + '*.png')
-          .pipe(imagemin({
-              use: [pngquant()]
-          }))
-          .pipe(spritesmith({
-              imgName: 'sprite-png.png',
-              cssName: 'sprite-png.css',
-              padding: 5,
-              cssOpts: {
-                  cssSelector: function(sprite) { return '.sprite-png--' + sprite.name}}
-          }));
+            .pipe(imagemin({
+                use: [pngquant()]
+            }))
+            .pipe(spritesmith({
+                imgName: 'sprite-png.png',
+                cssName: 'sprite-png.css',
+                padding: 5,
+                cssOpts: {
+                    cssSelector: function (sprite) {
+                        return '.sprite-png--' + sprite.name
+                    }
+                }
+            }));
 
         var img = sprite.img
-          .pipe(gulp.dest('./src/blocks/sprite-png/img'))
-          .pipe(size({
-              title: 'Размер',
-              showFiles: true,
-              showTotal: false
-          }));
+            .pipe(gulp.dest('./src/blocks/sprite-png/img'))
+            .pipe(size({
+                title: 'Размер',
+                showFiles: true,
+                showTotal: false
+            }));
 
         var scss = sprite.css
-          .pipe(rename('sprite-png.scss'))
-          .pipe(gulp.dest('./src/blocks/sprite-png'))
-          .pipe(size({
-              title: 'Размер',
-              showFiles: true,
-              showTotal: false
-          }));
+            .pipe(rename('sprite-png.scss'))
+            .pipe(gulp.dest('./src/blocks/sprite-png'))
+            .pipe(size({
+                title: 'Размер',
+                showFiles: true,
+                showTotal: false
+            }));
         return merge(img, scss);
     }
     else {
@@ -136,25 +139,25 @@ gulp.task('png', function (callback) {
 
 // Конкатенация и углификация Javascript
 gulp.task('js', function (callback) {
-    if(blocks.js.length > 0){
+    if (blocks.js.length > 0) {
         console.log('---------- Обработка JS');
         return gulp.src(blocks.js)
-          .pipe(gulpIf(isDev, sourcemap.init()))
-          .pipe(concat('script.min.js'))
-          .pipe(gulpIf(!isDev, uglify()))
-          .on('error', notify.onError(function(err){
-              return {
-                  title: 'Ошибка при сжатии JS',
-                  message: err.message
-              }
-          }))
-          .pipe(gulpIf(isDev, sourcemap.write('.')))
-          .pipe(size({
-              title: 'Размер',
-              showFiles: true,
-              showTotal: false
-          }))
-          .pipe(gulp.dest('./build/js'));
+            .pipe(gulpIf(isDev, sourcemap.init()))
+            .pipe(concat('script.min.js'))
+            .pipe(gulpIf(!isDev, uglify()))
+            .on('error', notify.onError(function (err) {
+                return {
+                    title: 'Ошибка при сжатии JS',
+                    message: err.message
+                }
+            }))
+            .pipe(gulpIf(isDev, sourcemap.write('.')))
+            .pipe(size({
+                title: 'Размер',
+                showFiles: true,
+                showTotal: false
+            }))
+            .pipe(gulp.dest('./build/js'));
     }
     else {
         console.log('---------- Обработка JS: в сборке нет JS-файлов');
@@ -164,36 +167,45 @@ gulp.task('js', function (callback) {
 
 // Сборка шрифтов
 gulp.task('font:woff', function () {
-  return gulp.src('./src/font/*.woff')
-    .pipe(cssfont64())
-    .pipe(rename({
-      suffix: ".woff"}))
-    .pipe(gulp.dest('./src/font/'))
-    .pipe(browserSync.stream());
+    return gulp.src('./src/font/*.woff')
+        .pipe(cssfont64())
+        .pipe(rename({
+            suffix: ".woff"
+        }))
+        .pipe(gulp.dest('./src/font/'))
+        .pipe(browserSync.stream());
 });
 
 // Сборка шрифтов
 gulp.task('font:woff2', function () {
-  return gulp.src('./src/font/*.woff2')
-    .pipe(cssfont64())
-    .pipe(rename({
-      suffix: ".woff2"}))
-    .pipe(gulp.dest('./src/font/'))
-    .pipe(browserSync.stream());
+    return gulp.src('./src/font/*.woff2')
+        .pipe(cssfont64())
+        .pipe(rename({
+            suffix: ".woff2"
+        }))
+        .pipe(gulp.dest('./src/font/'))
+        .pipe(browserSync.stream());
 });
 
 // Сборка шрифтов
 gulp.task('font', function () {
-  return gulp.src('./src/font/*.css')
-    .pipe(gulp.dest('./build/css/'))
-    .pipe(browserSync.stream());
+    return gulp.src('./src/font/*.css')
+        .pipe(gulp.dest('./build/css/'))
+        .pipe(browserSync.stream());
+});
+
+// Сборка PHP
+gulp.task('php', function () {
+    return gulp.src('./src/php/*.php')
+        .pipe(gulp.dest('./build/php/'))
+        .pipe(browserSync.stream());
 });
 
 // Сборка HTML
-gulp.task('html', function() {
+gulp.task('html', function () {
     console.log('----------Cборка HTML');
     return gulp.src('./src/*.html')
-      .pipe(gulp.dest('./build/'));
+        .pipe(gulp.dest('./build/'));
 });
 
 
@@ -201,59 +213,65 @@ gulp.task('html', function() {
 gulp.task('clean', function () {
     console.log('---------- Очистка папки сборки');
     return del([
-         './build/**'
+        './build/**'
     ]);
 });
 
 
 // Сборка всего
-gulp.task('build', gulpSequence('clean', ['make:scss', 'copy:css', 'img', 'js', 'html', 'font']));
+gulp.task('build', gulpSequence('clean', ['make:scss', 'copy:css', 'img', 'js', 'php', 'html', 'font']));
 
 
 // Локальный сервер, слежение
-gulp.task('server', ['build'], function() {
+gulp.task('server', ['build'], function () {
     browserSync.init({
         server: './build',
         port: 3000,
         browser: 'chrome',
         startPath: 'index.html'
     });
-    gulp.watch( './src/*.html',
-      function (event) {
-          gulpSequence('html',  browserSync.reload)(function (err) {
-              if (err) console.log(err)
-          })
-      });
+    gulp.watch('./src/*.html',
+        function (event) {
+            gulpSequence('html', browserSync.reload)(function (err) {
+                if (err) console.log(err)
+            })
+        });
 
     gulp.watch('./src/fonts/**/*', function (event) {
-      gulpSequence(['font:woff'], browserSync.reload)(function (err) {
-        if (err) console.log(err)
-      })
+        gulpSequence(['font:woff'], browserSync.reload)(function (err) {
+            if (err) console.log(err)
+        })
+    });
+
+    gulp.watch('./src/php/**/*', function (event) {
+        gulpSequence(['php'], browserSync.reload)(function (err) {
+            if (err) console.log(err)
+        })
     });
     gulp.watch(blocks.scss, function (event) {
-      gulpSequence('make:scss',  browserSync.reload)(function (err) {
-        if (err) console.log(err)
-      })
+        gulpSequence('make:scss', browserSync.reload)(function (err) {
+            if (err) console.log(err)
+        })
     });
     gulp.watch(blocks.img, function (event) {
-      gulpSequence('img',  browserSync.reload)(function (err) {
-        if (err) console.log(err)
-      })
+        gulpSequence('img', browserSync.reload)(function (err) {
+            if (err) console.log(err)
+        })
     });
     gulp.watch(blocks.js, function (event) {
-      gulpSequence('js',  browserSync.reload)(function (err) {
-        if (err) console.log(err)
-      })
+        gulpSequence('js', browserSync.reload)(function (err) {
+            if (err) console.log(err)
+        })
     });
 });
 
 
 // Отправка в GH pages (ветку gh-pages репозитория)
-gulp.task('deploy', function() {
-  console.log('---------- Публикация ./build/ на GH pages');
-  console.log('---------- '+ ghPagesUrl);
-  return gulp.src('./build/**/*')
-    .pipe(ghPages());
+gulp.task('deploy', function () {
+    console.log('---------- Публикация ./build/ на GH pages');
+    console.log('---------- ' + ghPagesUrl);
+    return gulp.src('./build/**/*')
+        .pipe(ghPages());
 });
 
 
@@ -280,7 +298,7 @@ function getComponentsFiles() {
     });
 
 
-    clearStyleSсss.forEach(function(item) {
+    clearStyleSсss.forEach(function (item) {
         // Попробуем вычленить блок из строки импорта
         var componentData = /\/blocks\/(.+?)(\/)(.+?)(?=.(scss|css))/g.exec(item);
 
@@ -304,11 +322,11 @@ function getComponentsFiles() {
             сomponentsFilesList.scss.push('./src' + componentData[0] + '.' + componentData[4]);
 
             // Если существует JS-файл — добавляем его в массив с результатом
-            if(fileExistAndHasContent(jsFile)) {
+            if (fileExistAndHasContent(jsFile)) {
                 сomponentsFilesList.js.push(jsFile);
             }
             // Если есть папка с изображениями, добавляем её в массив с результатом
-            if(fileExist(imagesDir) !== false) {
+            if (fileExist(imagesDir) !== false) {
                 сomponentsFilesList.img.push(imagesDir + '/*.{jpg,jpeg,gif,png,svg}');
             }
         }
@@ -336,9 +354,9 @@ function fileExistAndHasContent(path) {
     const fs = require('fs');
     try {
         fs.statSync(path);
-        if(fs.statSync(path).size > 1) return true;
+        if (fs.statSync(path).size > 1) return true;
         else return false;
-    } catch(err) {
+    } catch (err) {
         return !(err && err.code === 'ENOENT');
     }
 }
@@ -348,7 +366,7 @@ function fileExist(path) {
     const fs = require('fs');
     try {
         fs.statSync(path);
-    } catch(err) {
+    } catch (err) {
         return !(err && err.code === 'ENOENT');
     }
 }

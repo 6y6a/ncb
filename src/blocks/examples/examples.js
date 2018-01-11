@@ -6,4 +6,8 @@ $(document).ready(function(){
         items: 1,
         nav: true
     });
+
+    $('.examples__more').magnificPopup({
+        type: 'image'
+    });
 });

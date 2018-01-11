@@ -106,16 +106,16 @@
                         <div class="header__line"></div>
                     </div>
                     <ul class="header__list">
-                        <li class="header__item"><a href="#steps" class="header__link">Как получить?</a></li>
-                        <li class="header__item"><a href="#calc" class="header__link">Калькулятор</a></li>
+                        <li class="header__item"><a href="#steps" class="header__link">Наши услуги</a></li>
+                        <li class="header__item"><a href="#calc" class="header__link">Стоимость</a></li>
                         <li class="header__item"><a href="#about" class="header__link">О компании</a></li>
-                        <li class="header__item"><a href="#examples" class="header__link">Истории успеха</a></li>
+                        <li class="header__item"><a href="#examples" class="header__link">Живые истории</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="header__col-3">
                 <div class="header__phone">8 (800) 222-30-99</div>
-                <a href="#" class="btn  btn--small">Заказать звонок</a>
+                <a href="#form-call" class="btn  btn--small" id="callback">Заказать звонок</a>
             </div>
         </div>
     </div>
@@ -129,16 +129,17 @@
 
             <div class="hero__row">
                 <div class="hero__col-1">
-                    <form action="" class="offer hero__form">
+                    <form action="php/question.php" method="post" class="offer hero__form" id="myfrom">
                         <div class="offer__text">Оставьте заявку <b>прямо сейчас</b> и
                             получите <b>бесплатную консультацию!</b></div>
                         <div class="offer__row">
                             <div class="offer__col-1">
-                                <input type="text" class="offer__name" placeholder="Имя">
+                                <input type="text" class="offer__name" name="name" placeholder="Имя">
                             </div>
                             <div class="offer__col-2">
-                                <input type="text" class="offer__phone" placeholder="Телефон">
+                                <input type="text" class="offer__phone" name="phone" required placeholder="Телефон">
                             </div>
+                            <input type="hidden" name="code" value="Получить бесплатную консультацию разворот">
                             <div class="offer__col-3">
                                 <input type="submit" class="btn  btn--accent  offer__submit"
                                        value="Получить консультацию">
@@ -151,7 +152,7 @@
     </div>
     <div class="steps" id="steps">
         <div class="steps__container">
-            <h3 class="steps__header">Осуществите банкротство за 3 шага</h3>
+            <h3 class="steps__header">Банкротство в 3 шага</h3>
             <h4 class="steps__subheader">Оплата только после признания Вас <em
                     class="steps__subheader--em">банкротом!</em></h4>
 
@@ -164,7 +165,7 @@
                     <p class="steps__trigger">Вы оставляете заявку на нашем сайте</p>
                     <p class="steps__text">или звоните по номеру
                         <em class="steps__text--em">8 (800) 220-30-99</em> <br>
-                        и наш юрист связывается с&nbspВами в течении 5 минут
+                        Наш юрист связывается с&nbspВами в течение 15 минут
                     </p>
                 </div>
                 <div class="steps__col-1">
@@ -184,21 +185,130 @@
                         <div class="sprite-png--signing-the-contract"></div>
                     </div>
                     <p class="steps__trigger">Вы получаете решение суда о банкротстве</p>
-                    <p class="steps__text">в котором полностью освободжаетесь от всех долгов и начинаете
-                        <br><em class="steps__text--em">новую жизнь</em>
+                    <p class="steps__text">по которому освобождаетесь от всех кредитных обязательств.
+                        <br><em class="steps__text--em">Впереди - новая жизнь, <br>без груза долгов</em>
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="calc" id="calc"></div>
+    <div class="calc" id="calc">
+        <h3 class="calc__header">Рассчитайте стоимость банкротства</h3>
+        <div class="calc__container">
+            <div class="calc__row">
+                <div class="calc__col-1">
+
+                    <div class="calc__row  calc__row--margin">
+                        <div class="calc__col-2">
+                            <div class="calc__parametr">Ваш долг:</div>
+                        </div>
+                        <div class="calc__col-3">
+                            <div class="calc__slider">
+                                <div class="calc__min">500 000 руб</div>
+                                <div class="calc__max">4 000 000 руб</div>
+                                <label><input type="range"
+                                              min="500000"
+                                              max="4000000"
+                                              step="100000"
+                                              value="2300000"
+                                              id="money">
+                                </label>
+                                <div class="calc__money" id="moneyTotal"></div>
+                            </div>
+                        </div>
+                        <div class="calc__col-4">
+                            <input class="calc__hand" type="text" placeholder="Введите вручную" id="hand-money">
+                            <div class="calc__border"></div>
+                        </div>
+                    </div>
+
+                    <div class="calc__row  calc__row--margin">
+                        <div class="calc__col-2">
+                            <div class="calc__parametr">Срок процедуры:</div>
+                        </div>
+                        <div class="calc__col-3">
+                            <div class="calc__slider">
+                                <div class="calc__min">3 мес</div>
+                                <div class="calc__max">10 мес</div>
+                                <label><input type="range"
+                                              min="3"
+                                              max="10"
+                                              step="1"
+                                              value="6"
+                                              id="month">
+                                </label>
+                                <div class="calc__money" id="monthTotal"></div>
+                            </div>
+                        </div>
+                        <div class="calc__col-4">
+                            <input class="calc__hand" type="text" placeholder="Введите вручную" id="hand-month">
+                            <div class="calc__border"></div>
+                        </div>
+                    </div>
+
+                    <div class="calc__row  calc__row--margin">
+                        <div class="calc__col-5">
+                            <div class="calc__parametr">Перед кем задолженность:</div>
+                        </div>
+                        <div class="calc__col-6">
+                            <div class="calc__check">
+                                <label class="calc__label"><input type="checkbox" class="calc__checkbox" id="bank"
+                                                                  checked> банками</label>
+                                <label class="calc__label"><input type="checkbox" class="calc__checkbox" id="mfo">
+                                    МФО</label>
+                                <label class="calc__label"><input type="checkbox" class="calc__checkbox" id="fiz">
+                                    физ.лицами</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calc__row  calc__row--margin">
+                        <div class="calc__col-5">
+                            <div class="calc__parametr">У вас есть имущество:</div>
+                        </div>
+                        <div class="calc__col-6">
+                            <div class="calc__check">
+                                <label class="calc__label"><input type="radio" name="calc__radio" checked
+                                                                  class="calc__checkbox" id="im1"> нет</label>
+                                <label class="calc__label"><input type="radio" name="calc__radio" class="calc__checkbox"
+                                                                  id="im2"> от 1 до 5</label>
+                                <label class="calc__label"><input type="radio" name="calc__radio" class="calc__checkbox"
+                                                                  id="im3"> более 5</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calc__box">
+                        <div class="calc__row">
+                            <div class="calc__col-6">
+                                <div class="calc__text">Ежемесячная оплата на срок
+                                    <b id="monthRes">6 месяцев</b> не более
+                                </div>
+                            </div>
+                            <div class="calc__col-5">
+                                <div class="calc__result" id="result">25000 р</div>
+                            </div>
+                        </div>
+                        <a href="#form-call" class="btn  btn--calc" id="calc-callback">Начать новую жизнь без долгов</a>
+                        <div class="calc__desc">* конкретная стоимость процедуры банкротства устанавливается
+                            после консультации с юристом и фиксируется в договоре
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
     <div class="about" id="about">
         <div class="about__container">
             <div class="about__row">
                 <div class="about__col-1">
                     <h3 class="about__header">О компании</h3>
                     <h4 class="about__subheader"><em class="about__subheader--em">Национальный Центр Банкротсв</em>
-                        - это юридическая компания, которая избавит Вас от денежных обязательств. <br>Обратившись к нам
+                        избавит от проблем с кредиторами. <br>Обратившись к нам,
                         Вы получите:</h4>
                 </div>
             </div>
@@ -214,8 +324,8 @@
                         </div>
                         <div class="about__person">
                             <img src="img/director-2.jpg" alt="" class="about__img">
-                            <div class="about__position">Руководитель отдела в СПБ</div>
-                            <div class="about__name">Токарев Дмитрий Александрович</div>
+                            <div class="about__position">Руководитель подразделения НЦБ в г. Санкт-Петербурге</div>
+                            <div class="about__name">Михаил Михайлович Макаров</div>
                             <div class="about__work">Юридический стаж - <em class="about__work--em">12 лет</em></div>
                         </div>
                     </div>
@@ -227,7 +337,7 @@
                         <div class="about__trigger">
                             <div class="about__inner">
                                 <div class="sprite-png--shopping-support  about__icon"></div>
-                                <div class="about__text">Бесплатые <br> консультации</div>
+                                <div class="about__text">Бесплатные <br> консультации</div>
                             </div>
 
                             <div class="about__paragraph">с опытными юристами на
@@ -240,8 +350,8 @@
                                 <div class="sprite-png--home-interface  about__icon"></div>
                                 <div class="about__text">Сохранение <br> имущества</div>
                             </div>
-                            <div class="about__paragraph">будь то ваше имущество или
-                                приобретенное в ипотеку
+                            <div class="about__paragraph">как находящегося в Вашей собственности, так и
+                                залогового (ипотечного жилья)
                             </div>
                         </div>
                         <div class="about__trigger">
@@ -249,8 +359,7 @@
                                 <div class="sprite-png--violent-criminal  about__icon"></div>
                                 <div class="about__text">Спасение от <br>коллекторов</div>
                             </div>
-                            <div class="about__paragraph">ваше самочувствие от
-                                постоянных звонков и угроз в вашу сторону
+                            <div class="about__paragraph">прекратим постоянные звонки и угрозы
                             </div>
                         </div>
                         <div class="about__trigger">
@@ -267,8 +376,8 @@
                                 <div class="sprite-png--group  about__icon"></div>
                                 <div class="about__text">Комплексную <br> услугу</div>
                             </div>
-                            <div class="about__paragraph">над которой будут работать
-                                юрист и арбитражный управляющий
+                            <div class="about__paragraph">слаженная работа юриста и арбитражного управляющего
+                                НЦБ обеспечат достижение поставленной цели
                             </div>
                         </div>
                         <div class="about__trigger">
@@ -283,7 +392,7 @@
                         <div class="about__trigger">
                             <div class="about__inner">
                                 <div class="sprite-png--correct-symbol  about__icon"></div>
-                                <div class="about__text">100% гарантию <br> результата</div>
+                                <div class="about__text">Гарантию <br> результата</div>
                             </div>
                             <div class="about__paragraph">во всех завершенных нами
                                 процедурах банкротства долги были списаны
@@ -294,8 +403,7 @@
                                 <div class="sprite-png--payment-method  about__icon"></div>
                                 <div class="about__text">Оплату по <br> факту</div>
                             </div>
-                            <div class="about__paragraph">только при решении суда
-                                о вашем банктротстве
+                            <div class="about__paragraph">только после принятия судом решения о Вашем банкротстве
                             </div>
                         </div>
                     </div>
@@ -307,20 +415,21 @@
         <div class="collector__container">
             <div class="collector__row">
                 <div class="collector__col-1">
-                    <form action="" class="offer collector__form">
-                        <div class="offer__text">Оставьте свои данные и мы прекратим звонки коллекторов и сохраним
+                    <form action="php/question.php" method="post" class="offer collector__form">
+                        <div class="offer__text">Оставьте свои данные - мы прекратим звонки коллекторов и сохраним
                             имущество!
                         </div>
                         <div class="offer__row">
                             <div class="offer__col-1">
-                                <input type="text" class="offer__name" placeholder="Имя">
+                                <input type="text" class="offer__name" name="name" placeholder="Имя">
                             </div>
                             <div class="offer__col-2">
-                                <input type="text" class="offer__phone" placeholder="Телефон">
+                                <input type="text" class="offer__phone" name="phone" required placeholder="Телефон">
                             </div>
+                            <input type="hidden" name="code" value="Помогите мне">
                             <div class="offer__col-3">
                                 <input type="submit" class="btn  btn--accent  offer__submit"
-                                       value="Помогите мне!">
+                                       value="Позвоните мне!">
                             </div>
                         </div>
                     </form>
@@ -380,148 +489,142 @@
                             <div class="examples__result">Полное решение суда:</div>
                             <div class="examples__row">
                                 <div class="examples__col-6">
-                                    <a href="#" class="examples__more  examples__more--first">
+                                    <a href="img/bazin-case-1.jpg" class="examples__more  examples__more--first">
                                         <img src="img/bazin-case-1.jpg" alt="" class="examples__img">
                                     </a>
                                 </div>
                                 <div class="examples__col-6">
-                                    <a href="#" class="examples__more">
-                                        <img src="img/bazin-case-1.jpg" alt="" class="examples__img">
+                                    <a href="img/bazin-case-2.jpg" class="examples__more">
+                                        <img src="img/bazin-case-2.jpg" alt="" class="examples__img">
                                     </a>
                                 </div>
                                 <div class="examples__col-6">
-                                    <a href="#" class="examples__more">
-                                        <img src="img/bazin-case-1.jpg" alt="" class="examples__img">
+                                    <a href="img/bazin-case-3.jpg" class="examples__more">
+                                        <img src="img/bazin-case-3.jpg" alt="" class="examples__img">
                                     </a>
                                 </div>
                             </div>
-                            <a href="#" class="examples__download">Скачать решение суда в формате .pdf</a>
+                            <a href="https://bankrotstvo-476.ru/upload/iblock/b96/A40-159683-2016_20170418_Opredelenie.pdf"
+                               class="examples__download">Скачать решение суда в формате .pdf</a>
                         </div>
 
                         <div class="examples__box">
-                            <div class="examples__case">Дело о банкротстве №А40-159683/16</div>
+                            <div class="examples__case">Дело о банкротстве №А40-29331/16</div>
                             <div class="examples__row">
                                 <div class="examples__col-2">
-                                    <img src="img/bazin.jpg" class="examples__photo">
+                                    <img src="img/zaicev.jpg" class="examples__photo">
                                 </div>
                                 <div class="examples__col-3">
                                     <div class="examples__row">
                                         <div class="examples__col-4">
-                                            <div class="examples__person">Базин Сергей Александрович</div>
+                                            <div class="examples__person">Зайцев Александр Георгиевич</div>
+                                            <div class="examples__date">Процедура завершена 19.09.2017</div>
+                                            <div class="examples__city">г. Москва</div>
+                                        </div>
+                                        <div class="examples__col-5">
+                                            <div class="examples__debt">Списан долг в полном объеме</div>
+                                            <div class="examples__amount">400 млн руб</div>
+                                        </div>
+                                    </div>
+                                    <p class="examples__pretext">
+                                        Юристы НЦБ завершили два больших дела с одной общей кредитной историей. В рамках
+                                        проведенных процедур банкротства были списаны долги на сумму около 400 млн
+                                        рублей.
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="examples__text">Два партнера – Ленор Талятович Кадыров и Александр Георгиевич
+                                Зайцев - вели совместную предпринимательскую деятельность. Как это обычно бывает, на
+                                развитие своих предприятий брали кредиты под личное поручительство.
+                            </p>
+                            <p class="examples__text">. Когда-то эффективный и динамично набирающий обороты бизнес в
+                                сфере импорта запчастей, резко пошатнулся во время экономического кризиса. Кредиторы
+                                реализовывали залоговое имущество организаций, но это не снизило долговые обязательства
+                                по кредитам. Судебные разбирательства, исполнительные производства, решения судов о
+                                взыскании долгов – точку в этой бесконечной тяжбе помогли поставить специалисты НЦБ.
+                            </p>
+                            <p class="examples__text  examples__text--blue">Мы завершили дела с успешным результатом –
+                                наши клиенты, у каждого из которых размер долгов составлял по 200 млн рублей, избавлены
+                                от кредитных обязательств.
+                            </p>
+                            <div class="examples__result">Полное решение суда:</div>
+                            <div class="examples__row">
+                                <div class="examples__col-6">
+                                    <a href="img/zaicev-case-1.jpg" class="examples__more  examples__more--first">
+                                        <img src="img/zaicev-case-1.jpg" alt="" class="examples__img">
+                                    </a>
+                                </div>
+                                <div class="examples__col-6">
+                                    <a href="img/zaicev-case-2.jpg" class="examples__more">
+                                        <img src="img/zaicev-case-1.jpg" alt="" class="examples__img">
+                                    </a>
+                                </div>
+
+                            </div>
+                            <a href="https://bankrotstvo-476.ru/upload/iblock/81c/A40-29331-2016_20170919_Opredelenie.pdf"
+                               class="examples__download">Скачать решение суда в формате .pdf</a>
+                        </div>
+
+                        <div class="examples__box">
+                            <div class="examples__case">Дело о банкротстве №А40-162406/16</div>
+                            <div class="examples__row">
+                                <div class="examples__col-2">
+                                    <img src="img/sokolova.jpg" class="examples__photo">
+                                </div>
+                                <div class="examples__col-3">
+                                    <div class="examples__row">
+                                        <div class="examples__col-4">
+                                            <div class="examples__person">Соколова Светлана Николаевна</div>
                                             <div class="examples__date">Процедура завершена 18.07.2017</div>
                                             <div class="examples__city">г. Москва</div>
                                         </div>
                                         <div class="examples__col-5">
                                             <div class="examples__debt">Списан долг в полном объеме</div>
-                                            <div class="examples__amount">5 000 000 р</div>
+                                            <div class="examples__amount">1 500 000 р</div>
                                         </div>
                                     </div>
                                     <p class="examples__pretext">
-                                        Кризис на валютном рынке 2014 года пошатнул финансовое
-                                        благосостояние многих предпринимателей. В их числе
-                                        оказался и Сергей Александрович Базин.
+                                        Нередко заем в банках – это способ решения сложной жизненной ситуации. Разве
+                                        думаем мы о том, как будем их отдавать в тот момент, когда, например, болеет
+                                        близкий человек? Главное – успеть помочь, вылечить, остальное потом.
                                     </p>
                                 </div>
                             </div>
-                            <p class="examples__text">Являясь соучредителем одной компании, неплохо зарабатывал. Был
-                                надежным налогоплательщиком и заемщиком. Потребительские кредиты долгое время
-                                добросовестно погашал.
+                            <p class="examples__text">В похожей ситуации оказалась мать двоих детей Соколова Светлана
+                                Николаевна. Одному из ее сыновей, имеющему группу инвалидности, понадобилось срочное
+                                лечение. На эти цели были взяты кредиты.
                             </p>
-                            <p class="examples__text">Но с ростом негативных явлений в экономике положение стало
-                                ухудшаться. Предприятие ушло в минус, доходы Базина тоже. За просрочку платежей
-                                начислялись проценты, пенни – долг по кредитам превысил 5 млн рублей.
+                            <p class="examples__text">Заработная плата учителя едва хватала на текущие расходы: а их у
+                                матери-одиночки, снимающей квартиру, предостаточно, плюс кредитные обязательства.
                             </p>
-                            <p class="examples__text">Новое место работы также не приносило достаточно средств для
-                                стабилизации ситуации. От падения в долговую яму могла спасти только процедура
-                                банкротства. Сергей Александрович воспользовался этой правовой возможностью, которая
-                                действует с октября 2015 года.
+                            <p class="examples__text">Обратилась к нам Светлана Соколова, когда ее уже начали одолевать
+                                представители банков и коллекторы, просрочка по кредитам превышала три месяца, сумма
+                                задолженности превысила 1,5 млн рублей.
                             </p>
-                            <p class="examples__text  examples__text--blue">С помощью специалистов НЦБ Базин освобожден
-                                от всех долговых обязательств, имущество должника также удалось сохранить
-                                в его собственности.
+                            <p class="examples__text  examples__text--blue">Наши специалисты решили вопрос с
+                                коллекторами, успешно провели процедуру банкротства, списав все долги и сохранив
+                                имущество должника.
                             </p>
                             <div class="examples__result">Полное решение суда:</div>
                             <div class="examples__row">
                                 <div class="examples__col-6">
-                                    <a href="#" class="examples__more  examples__more--first">
-                                        <img src="img/bazin-case-1.jpg" alt="" class="examples__img">
+                                    <a href="img/sokolova-case-1.jpg" class="examples__more  examples__more--first">
+                                        <img src="img/sokolova-case-1.jpg" alt="" class="examples__img">
                                     </a>
                                 </div>
                                 <div class="examples__col-6">
-                                    <a href="#" class="examples__more">
-                                        <img src="img/bazin-case-1.jpg" alt="" class="examples__img">
+                                    <a href="img/sokolova-case-2.jpg" class="examples__more">
+                                        <img src="img/sokolova-case-2.jpg" alt="" class="examples__img">
                                     </a>
                                 </div>
                                 <div class="examples__col-6">
-                                    <a href="#" class="examples__more">
-                                        <img src="img/bazin-case-1.jpg" alt="" class="examples__img">
+                                    <a href="img/sokolova-case-3.jpg" class="examples__more">
+                                        <img src="img/sokolova-case-2.jpg" alt="" class="examples__img">
                                     </a>
                                 </div>
                             </div>
-                            <a href="#" class="examples__download">Скачать решение суда в формате .pdf</a>
-                        </div>
-
-                        <div class="examples__box">
-                            <div class="examples__case">Дело о банкротстве №А40-159683/16</div>
-                            <div class="examples__row">
-                                <div class="examples__col-2">
-                                    <img src="img/bazin.jpg" class="examples__photo">
-                                </div>
-                                <div class="examples__col-3">
-                                    <div class="examples__row">
-                                        <div class="examples__col-4">
-                                            <div class="examples__person">Базин Сергей Александрович</div>
-                                            <div class="examples__date">Процедура завершена 18.07.2017</div>
-                                            <div class="examples__city">г. Москва</div>
-                                        </div>
-                                        <div class="examples__col-5">
-                                            <div class="examples__debt">Списан долг в полном объеме</div>
-                                            <div class="examples__amount">5 000 000 р</div>
-                                        </div>
-                                    </div>
-                                    <p class="examples__pretext">
-                                        Кризис на валютном рынке 2014 года пошатнул финансовое
-                                        благосостояние многих предпринимателей. В их числе
-                                        оказался и Сергей Александрович Базин.
-                                    </p>
-                                </div>
-                            </div>
-                            <p class="examples__text">Являясь соучредителем одной компании, неплохо зарабатывал. Был
-                                надежным налогоплательщиком и заемщиком. Потребительские кредиты долгое время
-                                добросовестно погашал.
-                            </p>
-                            <p class="examples__text">Но с ростом негативных явлений в экономике положение стало
-                                ухудшаться. Предприятие ушло в минус, доходы Базина тоже. За просрочку платежей
-                                начислялись проценты, пенни – долг по кредитам превысил 5 млн рублей.
-                            </p>
-                            <p class="examples__text">Новое место работы также не приносило достаточно средств для
-                                стабилизации ситуации. От падения в долговую яму могла спасти только процедура
-                                банкротства. Сергей Александрович воспользовался этой правовой возможностью, которая
-                                действует с октября 2015 года.
-                            </p>
-                            <p class="examples__text  examples__text--blue">С помощью специалистов НЦБ Базин освобожден
-                                от всех долговых обязательств, имущество должника также удалось сохранить
-                                в его собственности.
-                            </p>
-                            <div class="examples__result">Полное решение суда:</div>
-                            <div class="examples__row">
-                                <div class="examples__col-6">
-                                    <a href="#" class="examples__more  examples__more--first">
-                                        <img src="img/bazin-case-1.jpg" alt="" class="examples__img">
-                                    </a>
-                                </div>
-                                <div class="examples__col-6">
-                                    <a href="#" class="examples__more">
-                                        <img src="img/bazin-case-1.jpg" alt="" class="examples__img">
-                                    </a>
-                                </div>
-                                <div class="examples__col-6">
-                                    <a href="#" class="examples__more">
-                                        <img src="img/bazin-case-1.jpg" alt="" class="examples__img">
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="#" class="examples__download">Скачать решение суда в формате .pdf</a>
+                            <a href="https://bankrotstvo-476.ru/upload/iblock/6e1/A40-162406-2016_20170718_Opredelenie.pdf"
+                               class="examples__download">Скачать решение суда в формате .pdf</a>
                         </div>
                     </div>
                 </div>
@@ -558,10 +661,11 @@
                                 безнадежными. Завершится процедура через 180 дней с момента признания банкротом.</p>
                         </li>
                         <li class="answers__item">
-                            <a href="#" class="answers__trigger">Срок процедуры банкротства ?</a>
-                            <p class="answers__text">Банкротом мы Вас признаем за 60 дней, после чего от Вас
-                                отстанут кредиторы ( коллекторы), с этого момента Ваши долги будут признаны
-                                безнадежными. Завершится процедура через 180 дней с момента признания банкротом.</p>
+                            <a href="#" class="answers__trigger">Сохраняются ли доходы в период банкротства ?</a>
+                            <p class="answers__text">Да, полностью. Вы сможете в полном объеме получать заработную
+                                плату, пенсию, пособие Задача юриста обосновать необходимость этого арбитражному
+                                управляющему (в нашей компании эта проблема не стоит, так как арбитражные управляющие
+                                состоят в штате)</p>
                         </li>
                         <li class="answers__item">
                             <a href="#" class="answers__trigger">Могут человека признать банкротом, а долги не
@@ -594,19 +698,35 @@
         <div class="question__container">
             <div class="question__row">
                 <div class="question__col-1">
-                    <form action="" class="offer question__form">
+                    <div class="offer question__form">
                         <div class="offer__text">Остались вопросы? <br>
-                            Позвоните нам <b class="offer__text--nowrap">8 (800) 222-30-99</b> <br>
+                            Позвоните нам: <b class="offer__text--nowrap">8 (800) 222-30-99</b> <br>
                             <div class="offer__text--margin">или</div>
                         </div>
-                            <a href="#" class="btn  btn--question  offer__submit">Закажите обратный звонок!</a>
-                        </div>
-                    </form>
+                        <a href="#form-call" class="btn  btn--question  offer__submit" id="question">Закажите обратный
+                            звонок!</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+
+<form action="php/question.php" class="popup  mfp-hide" id="form-call" method="post">
+    <div class="popup__header">Заполните форму</div>
+    <div class="popup__toltip">И наш менеджер свяжется <br>с Вами в течение 15 минут</div>
+    <label class="popup__label">
+        <input type="text" class="popup__name" name="name" placeholder="Имя">
+    </label>
+    <label class="popup__label">
+        <input type="text" class="popup__phone" name="phone" required placeholder="Телефон*">
+    </label>
+    <input type="hidden" name="code" id="code">
+    <label class="popup__label">
+        <input type="submit" class="popup__btn" value="Позвоните мне">
+    </label>
+</form>
 
 
 <script src="js/script.min.js"></script>

@@ -38,7 +38,14 @@
     "mkdirp": "^0.5.1"
   },
   "dependencies": {
+    "icheck": "^1.0.2",
+    "install": "^0.10.2",
+    "ion-rangeslider": "^2.2.0",
+    "jquery-validation": "^1.17.0",
+    "jquery.maskedinput": "^1.4.1",
+    "magnific-popup": "^1.1.0",
     "normalize.css": "^7.0.0",
-    "owl.carousel": "^2.2.0"
+    "owl.carousel": "^2.2.0",
+    "rangeslider.js": "^2.3.2"
   }
 }

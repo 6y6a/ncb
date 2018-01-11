@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var $code = $('#code')
+    var $code = $('#code'),
         $callback = $('#callback'),
         $question = $('#question'),
         $calc = $('#calc-callback');
